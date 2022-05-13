@@ -126,3 +126,11 @@ void strLwr(char *string){
         }
     }
 }
+
+
+unsigned isPalindrome(char *string){
+    size_t len = strLen(string);
+    register size_t i;
+    for(i = 0; i < len / 2; i++) if(string[i] != string[len - 1 - i]) return 0;
+    return 1;
+}

@@ -1,14 +1,15 @@
 #include "menu.h"
 
 unsigned int confirmation(){
-    char *choice, ch;
+    char ch, *aux;
+    unsigned valid;
     do{
-    printf("Are you sure (Y/N): ");
-    choice = inputString(stdin, 1);
-    ch = choice[0];
-    if (ch != 'y' && ch != 'Y' && ch != 'n' && ch != 'N') puts("Type only 'Y' or 'N'.");
-    } while (ch != 'y' && ch != 'Y' && ch != 'n' && ch != 'N');
-    free(choice);
+        printf("Are you sure (Y/N): ");
+        aux = inputShortString(1, &valid);
+        ch = aux[0];
+        if (!valid || (ch != 'y' && ch != 'Y' && ch != 'n' && ch != 'N')) puts("Type only 'Y' or 'N'.");
+        free(aux);
+    } while (!valid || (ch != 'y' && ch != 'Y' && ch != 'n' && ch != 'N'));
     if(ch == 'y' || ch == 'Y') return 1;
     return 0;
 }
